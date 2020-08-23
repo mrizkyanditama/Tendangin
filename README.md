@@ -11,7 +11,7 @@ Follow the instruction in [this](https://github.com/zubairehman/flutter-boilerpl
 * [iOS](https://flutter.dev/docs/deployment/ios)
 
 ## Screenshots
-|![1](assets/images/screenshots/ss_1.jpg?raw=true "Splash")|![2](assets/images/screenshots/ss_2.jpg?raw=true "Team Selection")|![3](assets/images/screenshots/ss_3.jpg?raw=true "Standing")||![4](assets/images/screenshots/ss_4.jpg?raw=true "Roster")|![5](assets/images/screenshots/ss_5.jpg?raw=true "Fixtures")|![6](assets/images/screenshots/ss_3.jpg?raw=true "News")|
+|![1](assets/images/screenshots/ss_1.jpg?raw=true "Splash")|![2](assets/images/screenshots/ss_2.jpg?raw=true "Team Selection")|![3](assets/images/screenshots/ss_3.jpg?raw=true "Standing")|![4](assets/images/screenshots/ss_4.jpg?raw=true "Roster")|![5](assets/images/screenshots/ss_5.jpg?raw=true "Fixtures")|![6](assets/images/screenshots/ss_3.jpg?raw=true "News")|
 
 ##  Features:
 
