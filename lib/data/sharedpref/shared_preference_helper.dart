@@ -60,4 +60,40 @@ class SharedPreferenceHelper {
       return prefs.setString(Preferences.current_language, language);
     });
   }
+
+  Future<String> get username{
+    return _sharedPreference.then((prefs) {
+      return prefs.getString(Preferences.username);
+    });
+  }
+
+  Future<void> setUsername(String username) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(Preferences.username, username);
+    });
+  }
+
+  Future<String> get team{
+    return _sharedPreference.then((prefs){
+      return prefs.getString(Preferences.team_id);
+    });
+  }
+
+  Future<void> setTeam(String team_id) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(Preferences.team_id, team_id);
+    });
+  }
+
+  Future<String> get league{
+    return _sharedPreference.then((prefs){
+      return prefs.getString(Preferences.league_id);
+    });
+  }
+
+  Future<void> setLeague(String league_id) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(Preferences.league_id, league_id);
+    });
+  }
 }

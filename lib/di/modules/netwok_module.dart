@@ -1,4 +1,5 @@
-import 'package:boilerplate/data/network/apis/posts/post_api.dart';
+import 'package:boilerplate/data/network/apis/football/football_api.dart';
+import 'package:boilerplate/data/network/constants/endpoints-football.dart';
 import 'package:boilerplate/data/network/constants/endpoints.dart';
 import 'package:boilerplate/data/network/dio_client.dart';
 import 'package:boilerplate/data/network/rest_client.dart';
@@ -6,6 +7,7 @@ import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/di/modules/preference_module.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:inject/inject.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,7 +29,7 @@ class NetworkModule extends PreferenceModule {
       ..options.baseUrl = Endpoints.baseUrl
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
-      ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
+      ..options.headers = EndpointsFootball.headers
       ..interceptors.add(LogInterceptor(
         request: true,
         responseBody: true,
@@ -50,7 +52,8 @@ class NetworkModule extends PreferenceModule {
             }
           },
         ),
-      );
+      )..interceptors.add(DioCacheManager(CacheConfig(baseUrl: "https://api-football-beta.p.rapidapi.com/")).interceptor)
+      ..interceptors.add(DioCacheManager(CacheConfig(baseUrl: "http://newsapi.org/")).interceptor);
 
     return dio;
   }
@@ -74,10 +77,12 @@ class NetworkModule extends PreferenceModule {
   /// A singleton post_api provider.
   ///
   /// Calling it multiple times will return the same instance.
+
+
   @provide
   @singleton
-  PostApi providePostApi(DioClient dioClient, RestClient restClient) =>
-      PostApi(dioClient, restClient);
+  FootballApi provideFootballApi(DioClient dioClient, RestClient restClient) =>
+      FootballApi(dioClient, restClient);
 // Api Providers End:---------------------------------------------------------
 
 }

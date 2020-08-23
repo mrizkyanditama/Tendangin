@@ -1,77 +1,29 @@
 import 'dart:async';
 
-import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
-import 'package:boilerplate/models/post/post.dart';
-import 'package:boilerplate/models/post/post_list.dart';
+import 'package:boilerplate/models/football/fixtures.dart';
+import 'package:boilerplate/models/football/news.dart';
+import 'package:boilerplate/models/football/standings.dart';
+import 'package:boilerplate/models/football/team.dart';
+import 'package:boilerplate/models/football/team_player.dart';
+
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
-import 'network/apis/posts/post_api.dart';
+import 'network/apis/football/football_api.dart';
+
 
 class Repository {
   // data source object
-  final PostDataSource _postDataSource;
 
-  // api objects
-  final PostApi _postApi;
+  final FootballApi _footballApi;
 
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource);
+  Repository(this._sharedPrefsHelper, this._footballApi);
 
-  // Post: ---------------------------------------------------------------------
-  Future<PostList> getPosts() async {
-    // check to see if posts are present in database, then fetch from database
-    // else make a network call to get all posts, store them into database for
-    // later use
-    return await _postDataSource.count() > 0
-        ? _postDataSource
-            .getPostsFromDb()
-            .then((postsList) => postsList)
-            .catchError((error) => throw error)
-        : _postApi.getPosts().then((postsList) {
-            postsList.posts.forEach((post) {
-              _postDataSource.insert(post);
-            });
-
-            return postsList;
-          }).catchError((error) => throw error);
-  }
-
-  Future<List<Post>> findPostById(int id) {
-    //creating filter
-    List<Filter> filters = List();
-
-    //check to see if dataLogsType is not null
-    if (id != null) {
-      Filter dataLogTypeFilter = Filter.equals(DBConstants.FIELD_ID, id);
-      filters.add(dataLogTypeFilter);
-    }
-
-    //making db call
-    return _postDataSource
-        .getAllSortedByFilter(filters: filters)
-        .then((posts) => posts)
-        .catchError((error) => throw error);
-  }
-
-  Future<int> insert(Post post) => _postDataSource
-      .insert(post)
-      .then((id) => id)
-      .catchError((error) => throw error);
-
-  Future<int> update(Post post) => _postDataSource
-      .update(post)
-      .then((id) => id)
-      .catchError((error) => throw error);
-
-  Future<int> delete(Post post) => _postDataSource
-      .update(post)
-      .then((id) => id)
-      .catchError((error) => throw error);
 
   // Theme: --------------------------------------------------------------------
   Future<void> changeBrightnessToDark(bool value) =>
@@ -84,4 +36,35 @@ class Repository {
       _sharedPrefsHelper.changeLanguage(value);
 
   Future<String> get currentLanguage => _sharedPrefsHelper.currentLanguage;
+
+  Future<void> setUsername(String username) =>
+      _sharedPrefsHelper.setUsername(username);
+
+  Future<String> get username => _sharedPrefsHelper.username;
+
+  Future<void> setTeam(String team_id) =>
+      _sharedPrefsHelper.setTeam(team_id);
+
+  Future<String> get team => _sharedPrefsHelper.team;
+
+  Future<void> setLeague(String league_id) =>
+      _sharedPrefsHelper.setLeague(league_id);
+
+  Future<String> get league => _sharedPrefsHelper.league;
+
+  Future<List> getCountries() => _footballApi.getCountries();
+
+  Future<List> getLeaguesByCountry(String country) => _footballApi.getLeaguesByCountry(country);
+
+  Future<List> getTeamsByLeague(String league) => _footballApi.getTeamsByLeague(league);
+
+  Future<Team> getTeamById(int id) => _footballApi.getTeamById(id);
+
+  Future<Standings> getStandingsByLeagueId(int id) => _footballApi.getStandingsByLeagueId(id);
+
+  Future<List<TeamPlayer>> getRosterByTeamId(int id) => _footballApi.getRosterByTeamId(id);
+
+  Future<List<Fixtures>> getFixturesByTeamId(int id) => _footballApi.getFixturesByTeamId(id);
+
+  Future<List<News>> getNewsByKeyword(String keyword) => _footballApi.getNewsByKeyword(keyword);
 }

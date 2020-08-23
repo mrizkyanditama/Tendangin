@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:boilerplate/constants/app_theme.dart';
 import 'package:boilerplate/constants/assets.dart';
 import 'package:boilerplate/data/sharedpref/constants/preferences.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/ui/football/index.dart';
+import 'package:boilerplate/utils/utils/route_util.dart';
 import 'package:boilerplate/widgets/app_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,10 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
   navigate() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    if (preferences.getBool(Preferences.is_logged_in) ?? false) {
-      Navigator.of(context).pushNamed(Routes.home);
+    print(preferences.getString(Preferences.team_id));
+
+    if (preferences.getString(Preferences.team_id) == null) {
+      Navigator.of(context).pushNamedAndRemoveUntil(Routes.initial, (Route<dynamic> route) => false);
     } else {
-      Navigator.of(context).pushNamed(Routes.login);
+      pushAndRemovePage(context, TeamHomePage( id: preferences.getString(Preferences.team_id)));
     }
   }
 }

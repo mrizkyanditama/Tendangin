@@ -1,5 +1,5 @@
 name: boilerplate
-description: A flutter boilerplate project created using MobX and Provider.
+description: Tendangin, a Football Companion App built with Flutter
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -54,6 +54,14 @@ dependencies:
   # Material Dialog
   material_dialog: ^0.0.9
 
+  cached_network_image: ^2.2.0+1
+
+  dio_http_cache: ^0.2.8
+
+  flutter_webview_plugin: ^0.3.11
+
+  share: ^0.6.4+3
+
   # Dependency injection
   inject:
     git:
@@ -85,7 +93,7 @@ dev_dependencies:
       ref: 7c3cbf6
 
 flutter_icons:
-  image_path: "assets/icons/ic_launcher.png"
+  image_path: "assets/icons/tendangin-icon.png"
   android: true
   ios: true
 
@@ -126,6 +134,9 @@ flutter:
       style: italic
     - asset: assets/fonts/Product-Sans-Bold.ttf
       weight: 700
+  - family: CustomIcon
+    fonts:
+        - asset: assets/fonts/custom/iconfont.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
