@@ -7,13 +7,13 @@ A football companion app developed from [Flutter Boilerplate Project](https://gi
 Follow the instruction in [this](https://github.com/zubairehman/flutter-boilerplate-project)
 
 ## Build & Release
-* [Android](https://flutter.dev/docs/deployment/android), alternatively [APK](https://s.id/vicon-GDSK-produksi)
+* [Android](https://flutter.dev/docs/deployment/android), alternatively [ready-to-download APK](https://s.id/tendangin-apks)
 * [iOS](https://flutter.dev/docs/deployment/ios)
 
 ## Screenshots
 | Splash  | Team Selection | Standing  | Roster | Fixtures | News |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| ![1](assets/images/screenshots/ss_1.jpg?raw=true "Splash") | ![2](assets/images/screenshots/ss_2.jpg?raw=true "Team Selection") | ![3](assets/images/screenshots/ss_3.jpg?raw=true "Standing") | ![4](assets/images/screenshots/ss_4.jpg?raw=true "Roster") | ![5](assets/images/screenshots/ss_5.jpg?raw=true "Fixtures")|![6](assets/images/screenshots/ss_3.jpg?raw=true "News") |
+| ![1](assets/images/screenshots/ss_1.jpg?raw=true "Splash") | ![2](assets/images/screenshots/ss_2.jpg?raw=true "Team Selection") | ![3](assets/images/screenshots/ss_3.jpg?raw=true "Standing") | ![4](assets/images/screenshots/ss_4.jpg?raw=true "Roster") | ![5](assets/images/screenshots/ss_6.jpg?raw=true "Fixtures")|![6](assets/images/screenshots/ss_5.jpg?raw=true "News") |
 
 
 ##  Features:
